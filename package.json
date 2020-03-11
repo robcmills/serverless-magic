@@ -1,0 +1,31 @@
+{
+  "name": "serverless-magic",
+  "version": "1.0.0",
+  "description": "Experimentation with serverless architecture by way of a Magic the Gathering deck building create-react-app generated PWA",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robcmills/serverless-magic.git"
+  },
+  "keywords": [
+    "serverless",
+    "create-react-app",
+    "pwa",
+    "magic",
+    "the",
+    "gathering",
+    "mtg"
+  ],
+  "author": "robcmills",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robcmills/serverless-magic/issues"
+  },
+  "homepage": "https://github.com/robcmills/serverless-magic#readme",
+  "dependencies": {
+    "create-react-app": "^3.4.0"
+  }
+}
