@@ -1,6 +1,6 @@
 {
   "name": "serverless-magic",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Experimentation with serverless architecture by way of a Magic the Gathering deck building create-react-app generated PWA",
   "main": "index.js",
   "scripts": {

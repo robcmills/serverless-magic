@@ -1,0 +1,7 @@
+.App {
+	composes: Screen from global;
+	background: black;
+	color: white;
+	display: grid;
+  font-family: 'Helvetica Neue', sans-serif;
+}
