@@ -2,17 +2,18 @@ import React from 'react';
 
 import { Logo } from 'components/Logo';
 
-import s from './styles.module.css';
+import { useStyles } from './styles';
 
-const version = 'v0.0.1';
+const VERSION = 'v0.0.1';
 
 export function Splash() {
+	const s = useStyles();
 	return (
-		<div className={s.Container}>
-			<div className={s.Screen} />
-			<div className={s.LogoContainer}>
+		<div className={s.container}>
+			<div className={s.screen} />
+			<div className={s.logoContainer}>
 				<Logo />
-				<p>{version}</p>
+				<p>{VERSION}</p>
 			</div>
 		</div>
 	);
