@@ -8,7 +8,7 @@ const version = 'v0.0.1';
 
 export function Splash() {
 	return (
-		<div className={s.Background}>
+		<div className={s.Container}>
 			<div className={s.Screen} />
 			<div className={s.LogoContainer}>
 				<Logo />
