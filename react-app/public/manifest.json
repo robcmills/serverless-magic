@@ -1,6 +1,6 @@
 {
-  "short_name": "Magic",
-  "name": "Serverless Magic PWA",
+  "short_name": "Mage",
+  "name": "Mage",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
+  "display": "fullscreen",
+  "theme_color": "#000000",
   "background_color": "#0000000"
 }
