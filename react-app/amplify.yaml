@@ -1,0 +1,18 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd react-app
+        - yarn install
+    # IMPORTANT - Please verify your build commands
+    build:
+      commands: [yarn build]
+  artifacts:
+    # IMPORTANT - Please verify your build output directory
+    baseDirectory: /react-app/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
