@@ -11,6 +11,7 @@ export const useStyles = createUseStyles({
 		color: 'white',
 		display: 'grid',
 		height: SPACING_UNIT * 4,
+		justifyContent: 'start',
 	},
 	menuIcon: {
 		cursor: 'pointer',
