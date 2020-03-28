@@ -1,11 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
-import { SPACING_UNIT } from 'styles/constants';
+import { ICON_SIZE } from 'styles/constants';
 
 export const useStyles = createUseStyles({
 	svgIcon: {
-		height: SPACING_UNIT * 2,
-		width: SPACING_UNIT * 2,
+		height: ICON_SIZE,
+		width: ICON_SIZE,
 	},
 	g: {
 		fill: 'currentColor',

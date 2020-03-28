@@ -5,7 +5,7 @@ import { SvgIcon } from 'components/icons/SvgIcon';
 export function MenuIcon() {
 	return (
 		<SvgIcon>
-			<path d="M0,13 L16,13 L16,11.3333333 L0,11.3333333 L0,13 Z M0,8.83333333 L16,8.83333333 L16,7.16666667 L0,7.16666667 L0,8.83333333 Z M0,3 L0,4.66666667 L16,4.66666667 L16,3 L0,3 Z" />
+			<path d="M0,15 L16,15 L16,12.5 L0,12.5 L0,15 Z M0,9.25 L16,9.25 L16,6.75 L0,6.75 L0,9.25 Z M0,1 L0,3.5 L16,3.5 L16,1 L0,1 Z" />
 		</SvgIcon>
 	);
 }

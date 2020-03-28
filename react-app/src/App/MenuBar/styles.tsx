@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
 import { ORANGE } from 'styles/colors';
-import { SPACING_UNIT } from 'styles/constants';
+import { ICON_SIZE, SPACING_UNIT } from 'styles/constants';
 import { screen } from 'styles/mixins';
 
 export const useStyles = createUseStyles({
@@ -15,7 +15,7 @@ export const useStyles = createUseStyles({
 	},
 	menuIcon: {
 		cursor: 'pointer',
-		padding: SPACING_UNIT * 2,
+		padding: ICON_SIZE,
 		'&:hover, &:focus': {
 			color: ORANGE,
 		},

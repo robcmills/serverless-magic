@@ -4,6 +4,8 @@ import cn from 'classnames';
 import { CloseIcon } from 'components/icons/CloseIcon';
 import { Portal } from 'components/Portal';
 
+import { MenuItem } from './MenuItem';
+
 import { useStyles } from './styles';
 
 interface P {
@@ -20,9 +22,14 @@ export function Menu({ close, isOpen }: P) {
 		<Portal>
 			<div className={menuScreenClass} onClick={close}>
 				<div className={menuClass}>
-					<div className={s.closeIcon} onClick={close}>
-						<CloseIcon />
+					<div className={s.menuHeader}>
+						<div className={s.closeIcon} onClick={close}>
+							<CloseIcon />
+						</div>
 					</div>
+					<MenuItem label='DATA' />
+					<MenuItem label='CARDS' />
+					<MenuItem label='DECKS' />
 				</div>
 			</div>
 		</Portal>
