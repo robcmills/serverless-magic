@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-// import { DataRoute } from 'routes/DataRoute';
+import { DataRoute } from 'routes/DataRoute';
 import { RootRoute } from 'routes/RootRoute';
 
 export function Router() {
@@ -9,9 +9,7 @@ export function Router() {
 		<BrowserRouter>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Switch>
-	        {/*<Route path="/data">
-	          <DataRoute />
-	        </Route>*/}
+	        <Route path="/data" component={DataRoute} />
 	        <Route path="/" component={RootRoute} />
 	      </Switch>
 	    </Suspense>
