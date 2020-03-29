@@ -2,9 +2,10 @@ import { DARK_GRAY } from 'styles/colors';
 
 export const H2_FONT_SIZE = '26px';
 export const BASE_FONT_SIZE = '16px';
+export const FONT_FAMILY = ['Helvetica Neue', 'sans-serif'];
 
 export const base = {
-  fontFamily: ['Helvetica Neue', 'sans-serif'],
+  fontFamily: FONT_FAMILY,
   fontSize: BASE_FONT_SIZE,
   fontWeight: 'normal',
   letterSpacing: '3px',

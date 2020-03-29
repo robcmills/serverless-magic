@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { ORANGE, TRANSLUCENT_DARK_GRAY } from 'styles/colors';
+import { ORANGE, DARK_GRAY } from 'styles/colors';
 import {
 	ICON_SIZE,
 	MENU_BORDER_WIDTH,
@@ -16,9 +16,9 @@ export const useStyles = createUseStyles({
 	},
 	menu: {
 		alignContent: 'start',
-		backgroundColor: TRANSLUCENT_DARK_GRAY,
+		backgroundColor: DARK_GRAY,
 		bottom: 0,
-		borderRight: `${MENU_BORDER_WIDTH}px solid white`,
+		borderRight: `${MENU_BORDER_WIDTH}px solid gray`,
 		color: 'white',
 		display: 'grid',
 		left: -MENU_WIDTH - MENU_BORDER_WIDTH,

@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-import { screen } from 'styles/mixins';
+import { absoluteScreen } from 'styles/mixins';
 import swamp from './gn2-59-swamp.jpg';
 
 export const useStyles = createUseStyles({
@@ -10,9 +10,10 @@ export const useStyles = createUseStyles({
 		backgroundSize: 'cover',
 		display: 'grid',
 		placeItems: 'center',
+		position: 'relative',
 	},
 	screen: {
-		...screen,
+		...absoluteScreen,
 		background: 'black',
 		opacity: 0.5,
 	},

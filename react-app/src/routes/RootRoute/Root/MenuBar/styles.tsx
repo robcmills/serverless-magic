@@ -1,21 +1,20 @@
 import { createUseStyles } from 'react-jss';
 
-import { ORANGE } from 'styles/colors';
-import { ICON_SIZE, SPACING_UNIT } from 'styles/constants';
-import { screen } from 'styles/mixins';
+import { DARK_GRAY, ORANGE } from 'styles/colors';
+import { MENU_BAR_HEIGHT } from 'styles/constants';
 
 export const useStyles = createUseStyles({
 	menuBar: {
-		...screen,
-		bottom: 'auto',
-		color: 'white',
+		backgroundColor: DARK_GRAY,
+		borderBottom: '1px solid gray',
 		display: 'grid',
-		height: SPACING_UNIT * 4,
-		justifyContent: 'start',
+		gridAutoFlow: 'column',
+		gridTemplateColumns: `${MENU_BAR_HEIGHT}px 1fr`,
 	},
 	menuIcon: {
 		cursor: 'pointer',
-		padding: ICON_SIZE,
+		display: 'grid',
+		placeItems: 'center',
 		'&:hover, &:focus': {
 			color: ORANGE,
 		},

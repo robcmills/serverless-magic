@@ -1,16 +1,14 @@
 import React from 'react';
 
-import { useStyles } from './styles';
-
+import { Layout } from 'components/Layout';
 import { MenuBar } from './MenuBar';
 import { Splash } from './Splash';
 
 export default function Root() {
-	const s = useStyles();
 	return (
-		<div className={s.app}>
-			<Splash />
-			<MenuBar />
-		</div>
+		<Layout
+			menuBar={<MenuBar />}
+			body={<Splash />}
+		/>
 	);
 }
