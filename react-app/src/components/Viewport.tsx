@@ -1,6 +1,14 @@
 import React, { ReactNode } from 'react';
+import { createUseStyles } from 'react-jss';
 
-import { useStyles } from './styles';
+import { screen } from 'styles/mixins';
+
+const useStyles = createUseStyles({
+	viewport: {
+		...screen,
+		backgroundColor: 'black',
+	},
+});
 
 interface P {
 	children: ReactNode;

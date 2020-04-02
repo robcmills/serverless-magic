@@ -1,7 +1,18 @@
 import React, { ReactNode } from 'react';
+import { createUseStyles } from 'react-jss';
 import cn from 'classnames';
 
-import { useStyles } from './styles';
+import { ICON_SIZE } from 'styles/constants';
+
+const useStyles = createUseStyles({
+	svgIcon: {
+		height: ICON_SIZE,
+		width: ICON_SIZE,
+	},
+	g: {
+		fill: 'currentColor',
+	}
+});
 
 interface P {
 	children: ReactNode;

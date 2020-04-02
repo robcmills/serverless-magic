@@ -1,7 +1,13 @@
 import React, { ReactNode } from 'react';
+import { createUseStyles } from 'react-jss';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-import { useStyles } from './styles';
+const useStyles = createUseStyles({
+	link: {
+		color: 'inherit',
+		textDecoration: 'inherit',
+	},
+});
 
 interface P {
 	children: ReactNode;
