@@ -4,7 +4,7 @@ import { ORANGE, DARK_GRAY } from 'styles/colors';
 import {
 	ICON_SIZE,
 	MENU_BORDER_WIDTH,
-	MENU_ITEM_HEIGHT,
+	MENU_BAR_HEIGHT,
 	MENU_WIDTH,
 } from 'styles/constants';
 import { screen } from 'styles/mixins';
@@ -19,7 +19,6 @@ export const useStyles = createUseStyles({
 		backgroundColor: DARK_GRAY,
 		bottom: 0,
 		borderRight: `${MENU_BORDER_WIDTH}px solid gray`,
-		color: 'white',
 		display: 'grid',
 		left: -MENU_WIDTH - MENU_BORDER_WIDTH,
 		position: 'absolute',
@@ -33,12 +32,14 @@ export const useStyles = createUseStyles({
 	},
 	menuHeader: {
 		display: 'grid',
-		height: MENU_ITEM_HEIGHT,
+		height: MENU_BAR_HEIGHT,
 		justifyContent: 'end',
 	},
 	closeIcon: {
 		cursor: 'pointer',
-		padding: ICON_SIZE,
+		display: 'grid',
+		placeItems: 'center',
+		width: MENU_BAR_HEIGHT,
 		'&:hover, &:focus': {
 			color: ORANGE,
 		},
