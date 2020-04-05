@@ -1,5 +1,5 @@
 
-export function getDatabase(
+export function open(
 	name: string,
 	version: number,
 	onupgradeneeded: ((this: IDBOpenDBRequest, event: IDBVersionChangeEvent) => any) | null,

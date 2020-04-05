@@ -1,6 +1,8 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { db } from 'db';
+
 import { SPACING_UNIT } from 'styles/constants';
 
 const useStyles = createUseStyles({
