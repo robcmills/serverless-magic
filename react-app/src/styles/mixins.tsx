@@ -5,6 +5,8 @@ export const globals = {
 	backgroundColor: BLACK,
   color: DEFAULT_TEXT_COLOR,
   fontFamily: base.fontFamily,
+  fontWeight: base.fontWeight,
+  letterSpacing: base.letterSpacing,
 };
 
 export const screen = {

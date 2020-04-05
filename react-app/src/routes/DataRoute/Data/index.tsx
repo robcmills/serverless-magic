@@ -1,12 +1,15 @@
 import React from 'react';
 
-import { H2 } from 'components/typography/H2';
-import { Viewport } from 'components/Viewport';
+import { Layout } from 'components/Layout';
+import { MenuBar } from 'components/MenuBar';
 
-export default function Data() {
+import { DataBody } from './DataBody';
+
+export default function Root() {
 	return (
-		<Viewport>
-		  <H2>Data</H2>
-		</Viewport>
+		<Layout
+			menuBar={<MenuBar />}
+			body={<DataBody />}
+		/>
 	);
 }
