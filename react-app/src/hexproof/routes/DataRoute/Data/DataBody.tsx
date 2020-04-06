@@ -3,10 +3,15 @@ import { createUseStyles } from 'react-jss';
 
 import { data } from 'hexproof/data';
 
+import { Button } from 'hexproof/components/Button';
+
 import { SPACING_UNIT } from 'hexproof/styles/constants';
 
 const useStyles = createUseStyles({
   body: {
+    alignContent: 'start',
+    display: 'grid',
+    gridGap: SPACING_UNIT,
     padding: SPACING_UNIT,
   },
   number: {
@@ -41,7 +46,12 @@ export function DataBody() {
 
   return (
     <div className={s.body}>
-      Number of downloaded Sets: {renderedLocalSetsCount}
+      <div>
+        Number of downloaded Sets: {renderedLocalSetsCount}
+      </div>
+      <div>
+        <Button>Download Sets</Button>
+      </div>
     </div>
   );
 }

@@ -20,7 +20,6 @@ export function open(
 		};
 
 		request.onsuccess = function() {
-		  console.log('Database initialised');
 		  resolve(request.result);
 		};
 	});

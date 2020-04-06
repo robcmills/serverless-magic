@@ -5,7 +5,7 @@ export const H3_FONT_SIZE = '24px';
 export const BASE_FONT_SIZE = '16px';
 export const FONT_FAMILY = ['Helvetica Neue', 'sans-serif'];
 
-export const base = {
+export const baseTypographyStyle = {
   fontFamily: FONT_FAMILY,
   fontWeight: 300,
   letterSpacing: '1px',
@@ -18,12 +18,12 @@ export const bold = {
   fontWeight: 'bold',
 };
 
-export const p = base;
+export const p = baseTypographyStyle;
 
 export const h2 = {
-  ...base,
+  ...baseTypographyStyle,
 };
 
 export const h3 = {
-  ...base,
+  ...baseTypographyStyle,
 };

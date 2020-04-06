@@ -20,7 +20,6 @@ export const databaseService: IDatabaseService = {
 				reject(new Error('Could not complete transaction'));
 			};
 			request.onsuccess = function(event) {
-			  console.log('success result', request.result);
 			  resolve(request.result);
 			};
 		});

@@ -1,12 +1,12 @@
 import { BLACK, DEFAULT_TEXT_COLOR } from 'hexproof/styles/colors';
-import { base } from 'hexproof/components/typography/styles';
+import { baseTypographyStyle } from 'hexproof/components/typography/styles';
 
 export const globals = {
 	backgroundColor: BLACK,
   color: DEFAULT_TEXT_COLOR,
-  fontFamily: base.fontFamily,
-  fontWeight: base.fontWeight,
-  letterSpacing: base.letterSpacing,
+  fontFamily: baseTypographyStyle.fontFamily,
+  fontWeight: baseTypographyStyle.fontWeight,
+  letterSpacing: baseTypographyStyle.letterSpacing,
 };
 
 export const screen = {
