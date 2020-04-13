@@ -22,6 +22,7 @@ const useStyles = createUseStyles({
 export function DataBody() {
   const s = useStyles();
 
+  // Local sets count
   const [localSetsCount, setLocalSetsCount] = useState(0);
   const [isFetchingLocalSetsCount, setIsFetchingLocalSetsCount] = useState(true);
 
@@ -44,13 +45,19 @@ export function DataBody() {
     !isFetchingLocalSetsCount && localSetsCount
   );
 
+  // Download sets
+  const downloadSets = async () => {
+    const sets = await data.downloadSets();
+    console.log('sets', sets);
+  }
+
   return (
     <div className={s.body}>
       <div>
         Number of downloaded Sets: {renderedLocalSetsCount}
       </div>
       <div>
-        <Button>Download Sets</Button>
+        <Button onClick={downloadSets}>Download Sets</Button>
       </div>
     </div>
   );

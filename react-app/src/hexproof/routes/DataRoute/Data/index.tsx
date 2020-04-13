@@ -5,7 +5,7 @@ import { MenuBar } from 'hexproof/components/MenuBar';
 
 import { DataBody } from './DataBody';
 
-export default function Root() {
+export default function Data() {
 	return (
 		<Layout
 			menuBar={<MenuBar />}

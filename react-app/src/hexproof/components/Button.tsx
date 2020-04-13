@@ -34,12 +34,13 @@ const useStyles = createUseStyles({
 interface P {
 	children: ReactNode;
 	className?: string;
+	onClick?: () => void;
 }
 
-export function Button({ className, children }: P) {
+export function Button({ className, children, onClick }: P) {
 	const s = useStyles();
 	return (
-		<button className={cn(s.button, className)}>
+		<button className={cn(s.button, className)} onClick={onClick}>
 		  {children}
 		</button>
 	);

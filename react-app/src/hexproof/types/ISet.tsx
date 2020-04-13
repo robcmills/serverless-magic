@@ -1,3 +1,4 @@
+import { IScryFallObject } from 'hexproof/types/IScryFallObject';
 import { URI } from 'hexproof/types/URI';
 import { UUID } from 'hexproof/types/UUID';
 
@@ -10,7 +11,7 @@ import { UUID } from 'hexproof/types/UUID';
 	Official sets always have a three-letter set code, such as zen.
 */
 
-export interface ISet {
+export interface ISet extends IScryFallObject {
 	id: UUID;	// A unique ID for this set on Scryfall that will not change.
 	code: string; // The unique three to five-letter code for this set.
 	mtgo_code: string | null; // The unique code for this set on MTGO, which may differ from the regular code.
