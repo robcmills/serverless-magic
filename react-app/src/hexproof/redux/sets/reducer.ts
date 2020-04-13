@@ -5,16 +5,16 @@ import { indexBy } from 'hexproof/util/indexBy';
 
 import { HYDRATE_SETS } from './actionTypes';
 
-interface S {
+export interface ISetsState {
   setsById: Record<UUID, ISet>;
 }
 
-const initialState: S = {
+const initialState: ISetsState = {
   setsById: {},
 };
 
 const handlers = {
-  [HYDRATE_SETS]: (state: S, sets: ISet[]): S => ({
+  [HYDRATE_SETS]: (state: ISetsState, sets: ISet[]): ISetsState => ({
     ...state,
     setsById: indexBy(sets, 'id'),
   }),

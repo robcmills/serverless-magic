@@ -16,6 +16,7 @@ const useStyles = createUseStyles({
 	},
 	body: {
 		display: 'grid',
+		overflow: 'scroll',
 	},
 });
 

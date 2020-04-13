@@ -5,6 +5,7 @@ import { data } from 'hexproof/data';
 import { LoadingScreen } from 'hexproof/components/LoadingScreen';
 import { DataRoute } from 'hexproof/routes/DataRoute';
 import { RootRoute } from 'hexproof/routes/RootRoute';
+import { SetsRoute } from 'hexproof/routes/SetsRoute';
 
 export function Router() {
 	useEffect(() => {
@@ -15,8 +16,9 @@ export function Router() {
 		<BrowserRouter>
 			<Suspense fallback={<LoadingScreen />}>
 				<Switch>
+	        <Route path="/" component={RootRoute} exact={true} />
 	        <Route path="/data" component={DataRoute} />
-	        <Route path="/" component={RootRoute} />
+	        <Route path="/sets" component={SetsRoute} />
 	      </Switch>
 	    </Suspense>
 		</BrowserRouter>

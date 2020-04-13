@@ -81,6 +81,7 @@ export function Menu({ close, isOpen }: P) {
             </div>
           </div>
           <MenuItem label='DATA' />
+          <MenuItem label='SETS' />
           <MenuItem label='CARDS' />
           <MenuItem label='DECKS' />
         </div>
