@@ -5,7 +5,6 @@ import { scryfallService } from 'hexproof/scryfall/service';
 
 interface IData {
 	downloadSets: () => Promise<ISet[]>;
-	getLocalSetsCount: () => Promise<number>;
 	replicateSets: () => Promise<void>;
 }
 
@@ -23,6 +22,5 @@ const replicateSets = async () => {
 
 export const data: IData = {
 	downloadSets,
-	getLocalSetsCount: databaseService.getLocalSetsCount,
 	replicateSets,
 }
