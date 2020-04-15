@@ -11,6 +11,7 @@ interface IData {
 
 const downloadSets = async () => {
 	const sets: ISet[] = await scryfallService.downloadSets();
+	await databaseService.clearSets();
 	await databaseService.hydrateSets(sets);
 	return sets;
 }

@@ -9,6 +9,10 @@ export const globals = {
   letterSpacing: baseTypographyStyle.letterSpacing,
 };
 
+export const disabled = {
+	opacity: 0.5,
+};
+
 export const screen = {
 	position: 'fixed',
 	left: 0	,

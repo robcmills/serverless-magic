@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { createUseStyles } from 'react-jss';
 
-import { data } from 'hexproof/data';
+import { downloadSetsAsyncAction } from 'hexproof/redux/sets/actions';
+import {
+  isDownloadingSetsSelector,
+  setsCountSelector,
+} from 'hexproof/redux/sets/selectors';
 
 import { Button } from 'hexproof/components/Button';
 
@@ -22,34 +27,12 @@ const useStyles = createUseStyles({
 export function DataBody() {
   const s = useStyles();
 
-  // Local sets count
-  const [localSetsCount, setLocalSetsCount] = useState(0);
-  const [isFetchingLocalSetsCount, setIsFetchingLocalSetsCount] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-    data.getLocalSetsCount().then((value: number) => {
-      if (isMounted) {
-        setLocalSetsCount(value);
-        setIsFetchingLocalSetsCount(false);
-      }
-    }).catch(error => {
-      console.error('Failed to fetch localSetsCount', error);
-    });
-    return () => {
-      isMounted = false;
-    };
-  });
+  const isDownloadingSets = useSelector(isDownloadingSetsSelector);
+  const setsCount = useSelector(setsCountSelector);
 
   const renderedLocalSetsCount = (
-    !isFetchingLocalSetsCount && localSetsCount
+    !isDownloadingSets && setsCount
   );
-
-  // Download sets
-  const downloadSets = async () => {
-    const sets = await data.downloadSets();
-    console.log('sets', sets);
-  }
 
   return (
     <div className={s.body}>
@@ -57,7 +40,12 @@ export function DataBody() {
         Number of downloaded Sets: {renderedLocalSetsCount}
       </div>
       <div>
-        <Button onClick={downloadSets}>Download Sets</Button>
+        <Button
+          isDisabled={isDownloadingSets}
+          onClick={downloadSetsAsyncAction}
+        >
+          Download Sets
+        </Button>
       </div>
     </div>
   );

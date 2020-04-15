@@ -1,1 +1,2 @@
+export const DOWNLOAD_SETS = 'SETS/DOWNLOAD_SETS';
 export const HYDRATE_SETS = 'SETS/HYDRATE_SETS';
