@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Link as ReactRouterLink } from 'react-router-dom';
 
 const useStyles = createUseStyles({
 	link: {
@@ -11,14 +10,14 @@ const useStyles = createUseStyles({
 
 interface P {
 	children: ReactNode;
-	to: string;
+	href: string;
 }
 
-export function Link({ children, to }: P) {
+export function Anchor({ children, href }: P) {
 	const s = useStyles();
 	return (
-		<ReactRouterLink className={s.link} to={to}>
+		<a className={s.link} href={href}>
 		  {children}
-		</ReactRouterLink>
+		</a>
 	);
 }

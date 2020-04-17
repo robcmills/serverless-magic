@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { Link } from 'hexproof/components/Link';
+import { Anchor } from 'hexproof/components/Anchor';
 import { H2 } from 'hexproof/components/typography/H2';
 
 import { ORANGE } from 'hexproof/styles/colors';
@@ -26,13 +26,13 @@ interface P {
 
 export function MenuItem({ label }: P) {
 	const s = useStyles();
-	const to = `/${label.toLowerCase()}`;
+	const href = `#${label.toLowerCase()}`;
 
 	return (
 		<div className={s.menuItem}>
-			<Link to={to}>
+			<Anchor href={href}>
 				<H2>{label}</H2>
-			</Link>
+			</Anchor>
 		</div>
 	);
 }
