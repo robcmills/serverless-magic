@@ -5,6 +5,8 @@ import { createUseStyles } from 'react-jss';
 import { ISet } from 'hexproof/types/ISet';
 import { setsArraySelector } from 'hexproof/redux/sets/selectors';
 
+// import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
+
 import { SPACING_UNIT } from 'hexproof/styles/constants';
 
 const useStyles = createUseStyles({
@@ -14,21 +16,47 @@ const useStyles = createUseStyles({
     gridGap: SPACING_UNIT,
     padding: SPACING_UNIT,
   },
+  head: {
+    display: 'grid',
+    fontWeight: 'bold',
+    gridAutoFlow: 'column',
+    gridGap: SPACING_UNIT,
+    gridTemplateColumns: 'min-content',
+  },
+  icon: {
+  },
+  name: {
+  },
+  row: {
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gridGap: SPACING_UNIT,
+  },
 });
 
 export function SetsBody() {
   const s = useStyles();
   const sets: ISet[] = useSelector(setsArraySelector);
 
-  const renderedSets = sets.map((set: ISet) => {
+  const rows = sets.map((set: ISet) => {
     return (
-      <div key={set.id}>{set.name}</div>
+      <div className={s.row} key={set.id}>
+        <div className={s.name}>
+          {set.name}
+        </div>
+      </div>
     );
   });
 
   return (
     <div className={s.body}>
-      {renderedSets}
+      <div className={s.head}>
+        {/*<div className={s.icon}> <MagicIcon /> </div>*/}
+        <div className={s.name}>
+          Name
+        </div>
+      </div>
+      {rows}
     </div>
   );
 }
