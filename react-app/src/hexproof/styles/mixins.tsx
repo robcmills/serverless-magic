@@ -13,6 +13,12 @@ export const disabled = {
 	opacity: 0.5,
 };
 
+export const ellipsify = {
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+};
+
 export const screen = {
 	position: 'fixed',
 	left: 0	,
