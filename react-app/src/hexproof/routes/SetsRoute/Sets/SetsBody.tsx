@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { forwardRef, useCallback, useMemo, useState, Ref } from 'react';
 import { useSelector } from 'react-redux';
 import { createUseStyles } from 'react-jss';
 
@@ -10,23 +10,45 @@ import { setsArraySelector } from 'hexproof/redux/sets/selectors';
 
 // import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
 
-import { DARK_GRAY, LIGHT_GRAY } from 'hexproof/styles/colors';
+import { DARK_GRAY, GRAY, LIGHT_GRAY } from 'hexproof/styles/colors';
 import { BORDER, SPACING_UNIT } from 'hexproof/styles/constants';
 import { ellipsify } from 'hexproof/styles/mixins';
 
+const rowHeight = (rowIndex: number) => SPACING_UNIT * 2;
+
 const useStyles = createUseStyles({
   body: {
-    alignContent: 'start',
     display: 'grid',
-    gridGap: SPACING_UNIT,
     padding: SPACING_UNIT,
   },
+  table: {
+    border: BORDER,
+    display: 'grid',
+  },
   head: {
+    backgroundColor: GRAY,
+    borderBottom: BORDER,
     display: 'grid',
     fontWeight: 'bold',
     gridAutoFlow: 'column',
-    gridGap: SPACING_UNIT,
-    gridTemplateColumns: 'min-content',
+    gridGap: 1,
+    gridTemplateColumns: ({ columnWidths }: { columnWidths: number[] }) => columnWidths
+      .map(width => `${width - GUTTER_SIZE}px`)
+      .join(' '),
+    position: 'sticky !important',
+    zIndex: 2,
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: rowHeight(0),
+  },
+  headCell: {
+    alignContent: 'center',
+    backgroundColor: LIGHT_GRAY,
+    boxSizing: 'border-box',
+    display: 'grid',
+    overflow: 'hidden',
+    padding: 6,
   },
   grid: {
     backgroundColor: DARK_GRAY,
@@ -61,22 +83,42 @@ const initialColumnFields: Array<keyof ISet> = [
 const initialColumnWidths = [
   256,
   128,
-  64,
+  128,
 ];
 
 const GUTTER_SIZE = 1;
 
-const rowHeight = (rowIndex: number) => SPACING_UNIT * 2;
 
 export function SetsBody() {
-  const s = useStyles();
-
   const [columnFields] = useState(initialColumnFields);
   const [columnWidths] = useState(initialColumnWidths);
   const sets: ISet[] = useSelector(setsArraySelector);
+  const sumColumnWidths = columnWidths.reduce((acc, cur) => acc + cur, 0);
+
+  const s = useStyles({ columnWidths });
+
+  const columnHeads = useMemo(() => {
+    return columnFields.map(field => (
+      <div className={s.headCell} key={field}>
+        {field}
+      </div>
+    ));
+  }, [columnFields, s]);
+
+  const innerElementType = forwardRef(({ children, ...rest }, ref: Ref<HTMLDivElement>) => (
+    <div ref={ref} {...rest}>
+      <div className={s.head}>
+        {columnHeads}
+      </div>
+      {children}
+    </div>
+  ));
 
   const Cell = useCallback(({ columnIndex, rowIndex, style }) => {
-    const set: ISet = sets[rowIndex];
+    if (rowIndex === 0) {
+      return null;
+    }
+    const set: ISet = sets[rowIndex - 1];
     const fieldName: keyof ISet = columnFields[columnIndex];
     const fieldValue = set[fieldName];
     const styleWithGutter = {
@@ -102,10 +144,11 @@ export function SetsBody() {
             className={s.grid}
             columnCount={columnFields.length}
             columnWidth={index => columnWidths[index]}
-            height={height}
-            rowCount={sets.length}
+            height={height - 2}
+            innerElementType={innerElementType}
+            rowCount={sets.length + 1}
             rowHeight={rowHeight}
-            width={width}
+            width={Math.min(width - 2, sumColumnWidths)}
           >
             {Cell}
           </Grid>
