@@ -75,14 +75,19 @@ const useStyles = createUseStyles({
   },
 });
 
+const fieldLabels = [
+  'Released',
+  'Name',
+  'Card count',
+];
 const initialColumnFields: Array<keyof ISet> = [
-  'name',
   'released_at',
+  'name',
   'card_count',
 ];
 const initialColumnWidths = [
-  256,
   128,
+  256,
   128,
 ];
 
@@ -98,9 +103,9 @@ export function SetsBody() {
   const s = useStyles({ columnWidths });
 
   const columnHeads = useMemo(() => {
-    return columnFields.map(field => (
+    return columnFields.map((field, index) => (
       <div className={s.headCell} key={field}>
-        {field}
+        {fieldLabels[index]}
       </div>
     ));
   }, [columnFields, s]);
