@@ -9,8 +9,9 @@ import { ISet } from 'hexproof/types/ISet';
 import { setsArraySelector } from 'hexproof/redux/sets/selectors';
 
 // import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
+import { CaretIcon } from 'hexproof/components/icons/CaretIcon';
 
-import { DARK_GRAY, GRAY, LIGHT_GRAY } from 'hexproof/styles/colors';
+import { DARK_GRAY, GRAY, LIGHT_GRAY, ORANGE } from 'hexproof/styles/colors';
 import { BORDER, SPACING_UNIT } from 'hexproof/styles/constants';
 import { ellipsify } from 'hexproof/styles/mixins';
 
@@ -43,12 +44,33 @@ const useStyles = createUseStyles({
     height: rowHeight(0),
   },
   headCell: {
-    alignContent: 'center',
     backgroundColor: LIGHT_GRAY,
     boxSizing: 'border-box',
     display: 'grid',
+    gridAutoFlow: 'column',
+    justifyContent: 'space-between',
     overflow: 'hidden',
+  },
+  fieldLabel: {
+    ...ellipsify,
+    alignItems: 'center',
+    display: 'grid',
+    padding: [0, 6],
+    paddingBottom: 3,
+  },
+  caret: {
+    boxSizing: 'border-box',
+    cursor: 'pointer',
+    display: 'grid',
     padding: 6,
+    placeItems: 'center',
+    '&:hover, &:focus': {
+      color: ORANGE,
+    },
+    '& svg': {
+      height: 14,
+      width: 14,
+    },
   },
   grid: {
     backgroundColor: DARK_GRAY,
@@ -63,10 +85,6 @@ const useStyles = createUseStyles({
   },
   cellValue: {
     ...ellipsify,
-  },
-  icon: {
-  },
-  name: {
   },
   row: {
     display: 'grid',
@@ -105,7 +123,12 @@ export function SetsBody() {
   const columnHeads = useMemo(() => {
     return columnFields.map((field, index) => (
       <div className={s.headCell} key={field}>
-        {fieldLabels[index]}
+        <div className={s.fieldLabel}>
+          {fieldLabels[index]}
+        </div>
+        <div className={s.caret}>
+          <CaretIcon />
+        </div>
       </div>
     ));
   }, [columnFields, s]);
