@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useMemo, useState, Ref } from 'react';
+import React, { forwardRef, useCallback, useMemo, Ref } from 'react';
 import { useSelector } from 'react-redux';
 import { createUseStyles } from 'react-jss';
 
@@ -6,7 +6,19 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import { VariableSizeGrid as Grid } from 'react-window';
 
 import { ISet } from 'hexproof/types/ISet';
-import { setsArraySelector } from 'hexproof/redux/sets/selectors';
+import { SortDirection } from 'hexproof/types/SortDirection';
+
+import {
+  setSortDirection,
+  setSortField,
+} from 'hexproof/redux/sets/actions';
+import {
+  setsColumnFieldsSelector,
+  setsColumnWidthsSelector,
+  setsSortDirectionSelector,
+  setsSortFieldSelector,
+  setsSortedArraySelector,
+} from 'hexproof/redux/sets/selectors';
 
 // import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
 import { CaretIcon } from 'hexproof/components/icons/CaretIcon';
@@ -46,6 +58,7 @@ const useStyles = createUseStyles({
   headCell: {
     backgroundColor: LIGHT_GRAY,
     boxSizing: 'border-box',
+    cursor: 'pointer',
     display: 'grid',
     gridAutoFlow: 'column',
     justifyContent: 'space-between',
@@ -60,10 +73,11 @@ const useStyles = createUseStyles({
   },
   caret: {
     boxSizing: 'border-box',
-    cursor: 'pointer',
     display: 'grid',
     padding: 6,
     placeItems: 'center',
+    transform: 'rotate(0deg)',
+    transition: 'transform 100ms',
     '&:hover, &:focus': {
       color: ORANGE,
     },
@@ -71,6 +85,9 @@ const useStyles = createUseStyles({
       height: 14,
       width: 14,
     },
+  },
+  caretAsc: {
+    transform: 'rotate(180deg)',
   },
   grid: {
     backgroundColor: DARK_GRAY,
@@ -98,40 +115,48 @@ const fieldLabels = [
   'Name',
   'Card count',
 ];
-const initialColumnFields: Array<keyof ISet> = [
-  'released_at',
-  'name',
-  'card_count',
-];
-const initialColumnWidths = [
-  128,
-  256,
-  128,
-];
 
 const GUTTER_SIZE = 1;
 
 
 export function SetsBody() {
-  const [columnFields] = useState(initialColumnFields);
-  const [columnWidths] = useState(initialColumnWidths);
-  const sets: ISet[] = useSelector(setsArraySelector);
+  const columnFields = useSelector(setsColumnFieldsSelector);
+  const columnWidths = useSelector(setsColumnWidthsSelector);
   const sumColumnWidths = columnWidths.reduce((acc, cur) => acc + cur, 0);
+  const sets: ISet[] = useSelector(setsSortedArraySelector);
+  const sortField = useSelector(setsSortFieldSelector);
+  const sortDirection = useSelector(setsSortDirectionSelector);
 
   const s = useStyles({ columnWidths });
 
+  const getHandleClickHeadCell = useCallback((field: keyof ISet) => () => {
+    let newSortDirection: SortDirection = 'DESC';
+    if (sortField === field) {
+      newSortDirection = sortDirection === 'ASC' ? 'DESC' : 'ASC';
+    }
+    setSortDirection(newSortDirection);
+    setSortField(field);
+  }, [sortField, sortDirection]);
+
   const columnHeads = useMemo(() => {
-    return columnFields.map((field, index) => (
-      <div className={s.headCell} key={field}>
-        <div className={s.fieldLabel}>
-          {fieldLabels[index]}
-        </div>
+    return columnFields.map((field, index) => {
+      const caretClassName = sortDirection === 'ASC' ? s.caretAsc : undefined;
+      const caretButton = (
         <div className={s.caret}>
-          <CaretIcon />
+          <CaretIcon className={caretClassName} />
         </div>
-      </div>
-    ));
-  }, [columnFields, s]);
+      );
+      const maybeCaret = field === sortField ? caretButton : null;
+      return (
+        <div className={s.headCell} key={field} onClick={getHandleClickHeadCell(field)}>
+          <div className={s.fieldLabel}>
+            {fieldLabels[index]}
+          </div>
+          {maybeCaret}
+        </div>
+      );
+    });
+  }, [columnFields, getHandleClickHeadCell, s, sortDirection, sortField]);
 
   const innerElementType = forwardRef(({ children, ...rest }, ref: Ref<HTMLDivElement>) => (
     <div ref={ref} {...rest}>
