@@ -2,16 +2,24 @@ import React, { forwardRef, useCallback, useMemo, Ref } from 'react';
 import { useSelector } from 'react-redux';
 import { createUseStyles } from 'react-jss';
 
+// virtualization
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { VariableSizeGrid as Grid } from 'react-window';
 
+// types
 import { ISet } from 'hexproof/types/ISet';
 import { SortDirection } from 'hexproof/types/SortDirection';
 
+// util
+import { labelify } from 'hexproof/util/labelify';
+
+// actions
 import {
   setSortDirection,
   setSortField,
 } from 'hexproof/redux/sets/actions';
+
+// selectors
 import {
   setsColumnFieldsSelector,
   setsColumnWidthsSelector,
@@ -20,9 +28,11 @@ import {
   setsSelector,
 } from 'hexproof/redux/sets/selectors';
 
+// components
 // import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
 import { CaretIcon } from 'hexproof/components/icons/CaretIcon';
 
+// jss
 import { DARK_GRAY, GRAY, LIGHT_GRAY, ORANGE } from 'hexproof/styles/colors';
 import { BORDER, SPACING_UNIT } from 'hexproof/styles/constants';
 import { ellipsify } from 'hexproof/styles/mixins';
@@ -52,6 +62,7 @@ const useStyles = createUseStyles({
     height: rowHeight(0),
   },
   headCell: {
+    alignItems: 'center',
     backgroundColor: LIGHT_GRAY,
     boxSizing: 'border-box',
     cursor: 'pointer',
@@ -62,8 +73,6 @@ const useStyles = createUseStyles({
   },
   fieldLabel: {
     ...ellipsify,
-    alignItems: 'center',
-    display: 'grid',
     padding: [0, 6],
     paddingBottom: 3,
   },
@@ -102,14 +111,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const fieldLabels = [
-  'Released',
-  'Name',
-  'Card count',
-];
-
 const GUTTER_SIZE = 1;
-
 
 export function SetsGrid() {
   const columnFields = useSelector(setsColumnFieldsSelector);
@@ -142,7 +144,7 @@ export function SetsGrid() {
       return (
         <div className={s.headCell} key={field} onClick={getHandleClickHeadCell(field)}>
           <div className={s.fieldLabel}>
-            {fieldLabels[index]}
+            {labelify(field)}
           </div>
           {maybeCaret}
         </div>
