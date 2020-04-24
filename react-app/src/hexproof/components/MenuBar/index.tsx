@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { MenuIcon } from 'hexproof/components/icons/MenuIcon';
@@ -26,7 +26,11 @@ const useStyles = createUseStyles({
 	},
 });
 
-export function MenuBar() {
+interface P {
+	children?: ReactNode;
+}
+
+export function MenuBar({ children }: P) {
 	const s = useStyles();
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +46,7 @@ export function MenuBar() {
 			<div className={s.menuIcon} onClick={open}>
 				<MenuIcon />
 			</div>
+			{children}
 			<Menu close={close} isOpen={isOpen} />
 		</div>
 	);

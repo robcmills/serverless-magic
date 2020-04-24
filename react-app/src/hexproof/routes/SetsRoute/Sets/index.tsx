@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { Layout } from 'hexproof/components/Layout';
-import { MenuBar } from 'hexproof/components/MenuBar';
 
+import { SetsMenuBar } from './SetsMenuBar';
 import { SetsBody } from './SetsBody';
 
 export default function Sets() {
 	return (
 		<Layout
-			menuBar={<MenuBar />}
+			menuBar={<SetsMenuBar />}
 			body={<SetsBody />}
 		/>
 	);
