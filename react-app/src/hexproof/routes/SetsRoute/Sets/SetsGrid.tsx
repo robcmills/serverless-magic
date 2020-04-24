@@ -17,7 +17,7 @@ import {
   setsColumnWidthsSelector,
   setsSortDirectionSelector,
   setsSortFieldSelector,
-  setsSortedArraySelector,
+  setsSelector,
 } from 'hexproof/redux/sets/selectors';
 
 // import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
@@ -115,7 +115,7 @@ export function SetsGrid() {
   const columnFields = useSelector(setsColumnFieldsSelector);
   const columnWidths = useSelector(setsColumnWidthsSelector);
   const sumColumnWidths = columnWidths.reduce((acc, cur) => acc + cur, 0);
-  const sets: ISet[] = useSelector(setsSortedArraySelector);
+  const sets: ISet[] = useSelector(setsSelector);
   const sortField = useSelector(setsSortFieldSelector);
   const sortDirection = useSelector(setsSortDirectionSelector);
 

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
+// actions
+import { setSearchQuery } from 'hexproof/redux/sets/actions';
+
+// components
 import { SearchIcon } from 'hexproof/components/icons/SearchIcon';
 
+// jss
 import { DEFAULT_TEXT_COLOR, DARK_GRAY, GRAY } from 'hexproof/styles/colors';
 import { BORDER, SPACING_UNIT } from 'hexproof/styles/constants';
 import { BASE_FONT_SIZE, p } from 'hexproof/components/typography/styles';
@@ -47,11 +52,21 @@ const useStyles = createUseStyles({
 export function SetsSearch() {
   const s = useStyles();
 
+  const [query, setQuery] = useState('');
+
+  const handleChange = useCallback((event) => {
+    const value = event.target.value;
+    setQuery(value);
+    setSearchQuery(value);
+  }, []);
+
   return (
     <div className={s.searchContainer}>
       <input
         className={s.searchInput}
+        onChange={handleChange}
         placeholder='Search'
+        value={query}
       />
       <div className={s.icon}>
         <SearchIcon  />

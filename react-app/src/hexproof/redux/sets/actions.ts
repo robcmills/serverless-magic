@@ -4,6 +4,7 @@ import { ISet } from 'hexproof/types/ISet';
 import {
   DOWNLOAD_SETS,
   HYDRATE_SETS,
+  SET_SEARCH_QUERY,
   SET_SORT_DIRECTION,
   SET_SORT_FIELD,
 } from 'hexproof/redux/sets/actionTypes';
@@ -20,6 +21,10 @@ export const downloadSetsAsyncAction = () =>
 
 export const hydrateSetsAction = (payload: ISet[]) => {
   store.dispatch({ type: HYDRATE_SETS, payload });
+}
+
+export const setSearchQuery = (payload: string) => {
+  store.dispatch({ type: SET_SEARCH_QUERY, payload });
 }
 
 export const setSortDirection = (payload: 'ASC' | 'DESC') => {

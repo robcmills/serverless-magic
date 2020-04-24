@@ -1,8 +1,11 @@
 import { createSelector } from 'reselect';
 
-import { compare } from 'hexproof/util/compare';
-import { ISetsState } from 'hexproof/redux/sets/reducer';
 import { ISet } from 'hexproof/types/ISet';
+
+import { compare } from 'hexproof/util/compare';
+import { escapeRegExp } from 'hexproof/util/escapeRegExp';
+
+import { ISetsState } from 'hexproof/redux/sets/reducer';
 
 const branchSelector = (state: any): ISetsState => state.sets;
 
@@ -36,6 +39,11 @@ export const setsCountSelector = createSelector(
 	(sets: ISet[]) => sets.length
 );
 
+export const setsSearchQuerySelector = createSelector(
+	[branchSelector],
+	(state: ISetsState) => state.searchQuery
+);
+
 export const setsSortDirectionSelector = createSelector(
 	[branchSelector],
 	(state: ISetsState) => state.sortDirection
@@ -46,7 +54,24 @@ export const setsSortFieldSelector = createSelector(
 	(state: ISetsState) => state.sortField
 );
 
-export const setsSortedArraySelector = createSelector(
-	[setsArraySelector, setsSortDirectionSelector, setsSortFieldSelector],
+export const setsSearchResultsSelector = createSelector(
+  [setsArraySelector, setsSearchQuerySelector],
+  (sets: ISet[], query: string) => {
+    if (!query) {
+      return sets;
+    }
+    const regex = new RegExp(escapeRegExp(query), 'i');
+    return sets.filter(set => regex.test(set.name) || regex.test(set.code));
+  }
+);
+
+export const setsSortedSelector = createSelector(
+	[setsSearchResultsSelector, setsSortDirectionSelector, setsSortFieldSelector],
 	(sets, direction, field) => sets.sort(compare(field, 'name', direction === 'ASC'))
 );
+
+export const setsSelector = createSelector(
+	[setsSortedSelector],
+	(sets: ISet[]) => sets
+);
+
