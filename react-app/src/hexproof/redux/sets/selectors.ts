@@ -75,3 +75,7 @@ export const setsSelector = createSelector(
 	(sets: ISet[]) => sets
 );
 
+export const setsSearchResultsCountSelector = createSelector(
+	[setsSearchResultsSelector],
+	(results: ISet[]) => results.length
+);

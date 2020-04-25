@@ -1,10 +1,15 @@
 import React, { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { createUseStyles } from 'react-jss';
 
 // actions
 import { setSearchQuery } from 'hexproof/redux/sets/actions';
 
+// selectors
+import { setsSearchResultsCountSelector } from 'hexproof/redux/sets/selectors';
+
 // components
+import { P } from 'hexproof/components/typography/P';
 import { SearchIcon } from 'hexproof/components/icons/SearchIcon';
 
 // jss
@@ -13,12 +18,17 @@ import { BORDER, SPACING_UNIT } from 'hexproof/styles/constants';
 import { BASE_FONT_SIZE, p } from 'hexproof/components/typography/styles';
 
 const useStyles = createUseStyles({
-  searchContainer: {
+  search: {
+    alignItems: 'center',
+    display: 'flex',
+  },
+  inputContainer: {
     display: 'grid',
-    maxWidth: 512,
+    flex: 1,
+    maxWidth: 375,
     position: 'relative',
   },
-  searchInput: {
+  input: {
     ...p,
     alignContent: 'center',
     backgroundColor: DARK_GRAY,
@@ -47,10 +57,15 @@ const useStyles = createUseStyles({
       width: SPACING_UNIT,
     },
   },
+  results: {
+    marginLeft: SPACING_UNIT,
+  },
 });
 
 export function SetsSearch() {
   const s = useStyles();
+
+  const resultsCount = useSelector(setsSearchResultsCountSelector);
 
   const [query, setQuery] = useState('');
 
@@ -61,15 +76,20 @@ export function SetsSearch() {
   }, []);
 
   return (
-    <div className={s.searchContainer}>
-      <input
-        className={s.searchInput}
-        onChange={handleChange}
-        placeholder='Search'
-        value={query}
-      />
-      <div className={s.icon}>
-        <SearchIcon  />
+    <div className={s.search}>
+      <div className={s.inputContainer}>
+        <input
+          className={s.input}
+          onChange={handleChange}
+          placeholder='Search'
+          value={query}
+        />
+        <div className={s.icon}>
+          <SearchIcon  />
+        </div>
+      </div>
+      <div className={s.results}>
+        <P>{resultsCount} Results</P>
       </div>
     </div>
   );
