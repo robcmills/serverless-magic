@@ -34,11 +34,13 @@ const useStyles = createUseStyles({
     backgroundColor: DARK_GRAY,
     border: BORDER,
     borderRadius: SPACING_UNIT,
+    boxSizing: 'border-box',
     caretColor: DEFAULT_TEXT_COLOR,
     color: DEFAULT_TEXT_COLOR,
     fontSize: BASE_FONT_SIZE,
     height: SPACING_UNIT * 2,
     padding: [0, 42, 0, SPACING_UNIT],
+    width: '100%',
     '&:focus': {
       borderColor: DEFAULT_TEXT_COLOR,
       outline: 'none',
@@ -59,6 +61,7 @@ const useStyles = createUseStyles({
   },
   results: {
     marginLeft: SPACING_UNIT,
+    whiteSpace: 'nowrap',
   },
 });
 
