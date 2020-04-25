@@ -61,6 +61,7 @@ const useStyles = createUseStyles({
   },
   results: {
     marginLeft: SPACING_UNIT,
+    minWidth: 100,
     whiteSpace: 'nowrap',
   },
 });
