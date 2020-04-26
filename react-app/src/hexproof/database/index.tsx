@@ -2,7 +2,7 @@ import { open } from 'hexproof/database/open';
 import { onUpgradeNeeded } from 'hexproof/database/onUpgradeNeeded';
 
 const dbName = 'hexproof';
-const dbVersion = 3;
+const dbVersion = 5;
 
 interface IDatabase {
 	dbName: string;
