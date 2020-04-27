@@ -9,7 +9,7 @@ import {
   setsCountSelector,
 } from 'hexproof/redux/sets/selectors';
 
-import { SvgSpinner } from 'hexproof/components/SvgSpinner';
+import { Spinner } from 'hexproof/components/Spinner';
 import { SetsGrid } from './SetsGrid';
 import { SetsSearch } from './SetsSearch';
 
@@ -41,7 +41,7 @@ export function SetsBody() {
   }, [areSetsNotDownloaded, isDownloadingSets]);
 
   if (isDownloadingSets) {
-    return <SvgSpinner className={s.spinner} />;
+    return <Spinner className={s.spinner} />;
   }
 
   return (
