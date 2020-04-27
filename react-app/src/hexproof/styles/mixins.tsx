@@ -20,11 +20,13 @@ export const ellipsify = {
 };
 
 export const screen = {
-	position: 'fixed',
+	bottom: 0	,
+	height: '100%',
 	left: 0	,
+	position: 'fixed',
 	right: 0	,
 	top: 0	,
-	bottom: 0	,
+	width: '100%',
 };
 
 export const absoluteScreen = {
