@@ -15,4 +15,11 @@ export function onUpgradeNeeded(
     objectStore.createIndex('code', 'code', { unique: true });
     objectStore.createIndex('name', 'name', { unique: true });
   }
+
+  if (!indexedDB.objectStoreNames.contains('setIcons')) {
+    indexedDB.createObjectStore(
+      'setIcons',
+      { keyPath: 'uri' },
+    );
+  }
 }

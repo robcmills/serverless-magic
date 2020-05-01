@@ -31,6 +31,7 @@ import {
 // components
 // import { MagicIcon } from 'hexproof/components/icons/MagicIcon';
 import { CaretIcon } from 'hexproof/components/icons/CaretIcon';
+import { IconCell } from './IconCell';
 
 // jss
 import { DARK_GRAY, GRAY, LIGHT_GRAY, ORANGE } from 'hexproof/styles/colors';
@@ -176,9 +177,17 @@ export function SetsGrid() {
       height: style.height + GUTTER_SIZE,
     };
     const title = typeof fieldValue === 'string' ? fieldValue : undefined;
+
+    let cellContent = (
+      <div className={s.cellValue}>{fieldValue}</div>
+    );
+    if (fieldName === 'icon_svg_uri') {
+      cellContent = <IconCell set={set} />;
+    }
+
     return (
       <div className={s.cell} style={styleWithGutter} title={title}>
-        <div className={s.cellValue}>{fieldValue}</div>
+        {cellContent}
       </div>
     );
   }, [columnFields, sets, s]);

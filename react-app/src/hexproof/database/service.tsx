@@ -1,9 +1,12 @@
 import { database } from 'hexproof/database';
 import { ISet } from 'hexproof/types/ISet';
+import { ISetIcon } from 'hexproof/types/ISetIcon';
 
 interface IDatabaseService {
+  addSetIcon: (setIcon: ISetIcon) => Promise<void>;
   clearSets: () => Promise<void>;
   getAllSets: () => Promise<ISet[]>;
+  getSetIcon: (iconSvgUri: string) => Promise<ISetIcon>;
   hydrateSets: (sets: ISet[]) => Promise<void>;
   transaction: (args: ITransaction) => Promise<any>;
 }
@@ -16,6 +19,25 @@ interface ITransaction {
 }
 
 export const databaseService: IDatabaseService = {
+  addSetIcon: async (setIcon: ISetIcon): Promise<void> => {
+    const db: IDBDatabase | null = await database.getIndexedDB();
+    if (!db) {
+      throw new Error('Could not open database');
+    }
+    const transaction: IDBTransaction = db.transaction('setIcons', 'readwrite');
+    const objectStore: IDBObjectStore = transaction.objectStore('setIcons');
+
+    return await new Promise((resolve, reject) => {
+      const request: IDBRequest = objectStore.add(setIcon);
+      request.onerror = function(event) {
+        console.error('addSetIcon transaction error', request, event);
+        reject(new Error('Could not complete `addSetIcon` transaction'));
+      };
+      request.onsuccess = function(event) {
+        resolve();
+      };
+    });
+  },
   clearSets: async function() {
     return this.transaction({
       getRequest: (objectStore: IDBObjectStore) => objectStore.clear(),
@@ -29,6 +51,13 @@ export const databaseService: IDatabaseService = {
       getRequest: (objectStore: IDBObjectStore) => objectStore.getAll(),
       storeName: 'sets',
       transactionName: 'getAllSets',
+    });
+  },
+  getSetIcon: async function(iconSvgUri: string): Promise<ISetIcon> {
+    return this.transaction({
+      getRequest: (objectStore: IDBObjectStore) => objectStore.get(iconSvgUri),
+      storeName: 'setIcons',
+      transactionName: 'getSetIcon',
     });
   },
   hydrateSets: async (sets: ISet[]): Promise<void> => {

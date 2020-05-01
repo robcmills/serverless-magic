@@ -27,8 +27,8 @@ export interface ISetsState {
   sortField: keyof ISet;
 }
 const initialState: ISetsState = {
-  columnFields: ['released_at', 'code', 'name', 'card_count'],
-  columnWidths: [128, 64, 256, 128],
+  columnFields: ['released_at', 'code', 'icon_svg_uri', 'name', 'card_count'],
+  columnWidths: [128, 64, 70, 256, 128],
 	isDownloadingSets: false,
   searchQuery: '',
   setsById: {},
