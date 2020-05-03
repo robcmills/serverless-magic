@@ -27,9 +27,12 @@ interface P {
 export function SetIcon({ set }: P) {
 	const s = useStyles();
 
-	const [iconSvg, setIconSvg] = useState('');
+	const [iconSvg, setIconSvg] = useState(set.icon_svg || '');
 
 	useEffect(() => {
+		if (set.icon_svg) {
+			return;
+		}
 		let isMounted = true;
 		data.getSetIcon(set.icon_svg_uri).then((svg) => {
 			if (isMounted) {

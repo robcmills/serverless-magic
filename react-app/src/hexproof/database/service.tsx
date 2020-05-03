@@ -6,6 +6,7 @@ interface IDatabaseService {
   addSetIcon: (setIcon: ISetIcon) => Promise<void>;
   clearSets: () => Promise<void>;
   getAllSets: () => Promise<ISet[]>;
+  getAllSetIcons: () => Promise<ISetIcon[]>;
   getSetIcon: (iconSvgUri: string) => Promise<ISetIcon>;
   hydrateSets: (sets: ISet[]) => Promise<void>;
   transaction: (args: ITransaction) => Promise<any>;
@@ -51,6 +52,13 @@ export const databaseService: IDatabaseService = {
       getRequest: (objectStore: IDBObjectStore) => objectStore.getAll(),
       storeName: 'sets',
       transactionName: 'getAllSets',
+    });
+  },
+  getAllSetIcons: async function() {
+    return this.transaction({
+      getRequest: (objectStore: IDBObjectStore) => objectStore.getAll(),
+      storeName: 'setIcons',
+      transactionName: 'getAllSetIcons',
     });
   },
   getSetIcon: async function(iconSvgUri: string): Promise<ISetIcon> {

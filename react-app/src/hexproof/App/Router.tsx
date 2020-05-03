@@ -13,6 +13,7 @@ export function Router() {
 
 	useEffect(() => {
 		data.replicateSets();
+		data.replicateSetIcons();
 	}, []);
 
 	const handleHashChange = useCallback(() => {

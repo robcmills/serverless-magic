@@ -28,6 +28,7 @@ export interface ISet extends IScryFallObject {
 	scryfall_uri: URI; // A link to this set’s permapage on Scryfall’s website.
 	uri: URI; // A link to this set object on Scryfall’s API.
 	icon_svg_uri: URI; // A URI to an SVG file for this set’s icon on Scryfall’s CDN. Hotlinking this image isn’t recommended, because it may change slightly over time. You should download it and use it locally for your particular user interface needs.
+	icon_svg?: string; // The SVG for this set's icon. Available only if the setIcon has been downloaded.
 	search_uri: URI; // A Scryfall API URI that you can request to begin paginating over the cards in this set.
 }
 

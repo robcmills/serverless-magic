@@ -1,11 +1,15 @@
 import { createSelector } from 'reselect';
 
 import { ISet } from 'hexproof/types/ISet';
+import { ISetIcon } from 'hexproof/types/ISetIcon';
+import { URI } from 'hexproof/types/URI';
 
 import { compare } from 'hexproof/util/compare';
 import { escapeRegExp } from 'hexproof/util/escapeRegExp';
 
 import { ISetsState } from 'hexproof/redux/sets/reducer';
+
+import { setIconsByUriSelector } from 'hexproof/redux/setIcons/selectors';
 
 const branchSelector = (state: any): ISetsState => state.sets;
 
@@ -71,8 +75,12 @@ export const setsSortedSelector = createSelector(
 );
 
 export const setsSelector = createSelector(
-	[setsSortedSelector],
-	(sets: ISet[]) => sets
+	[setsSortedSelector, setIconsByUriSelector],
+	(sets: ISet[], setIconsByUri: Record<URI, ISetIcon>) => sets.map((set: ISet) => {
+		const setIcon: ISetIcon = setIconsByUri[set.icon_svg_uri];
+		set.icon_svg = setIcon && setIcon.svg;
+		return set;
+	})
 );
 
 export const setsSearchResultsCountSelector = createSelector(
