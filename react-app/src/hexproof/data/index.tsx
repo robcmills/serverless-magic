@@ -24,13 +24,10 @@ const createGetSetIcon = () => {
 	const cache: IGetSetIconsCache = {};
 	const getSetIcon = async (iconSvgUri: string) => {
 		if (cache[iconSvgUri]) {
-			console.log('cache hit');
 			return cache[iconSvgUri];
 		}
-		console.log('database.getSetIcon', iconSvgUri);
 		const setIcon: ISetIcon = await databaseService.getSetIcon(iconSvgUri);
 		if (!setIcon) {
-			console.log('scryfallService.getSetIcon', iconSvgUri);
 			const svg: string = await scryfallService.getSetIcon(iconSvgUri);
 			const newSetIcon: ISetIcon = {
 				uri: iconSvgUri,
@@ -38,7 +35,6 @@ const createGetSetIcon = () => {
 			};
 			if (!cache[iconSvgUri]) {
 				cache[iconSvgUri] = svg;
-				console.log('databaseService.addSetIcon', iconSvgUri);
 				await databaseService.addSetIcon(newSetIcon);
 			}
 			return svg;
