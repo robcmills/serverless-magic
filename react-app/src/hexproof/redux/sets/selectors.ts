@@ -74,14 +74,20 @@ export const setsSortedSelector = createSelector(
 	(sets, direction, field) => sets.sort(compare(field, 'name', direction === 'ASC'))
 );
 
-export const setsSelector = createSelector(
-	[setsSortedSelector, setIconsByUriSelector],
-	(sets: ISet[], setIconsByUri: Record<URI, ISetIcon>) => sets.map((set: ISet) => {
-		const setIcon: ISetIcon = setIconsByUri[set.icon_svg_uri];
-		set.icon_svg = setIcon && setIcon.svg;
-		return set;
-	})
-);
+export const setsSelector = createSelector([
+	setsSortedSelector,
+	setIconsByUriSelector,
+	setsSearchResultsSelector,
+	setsSortDirectionSelector,
+	setsSortFieldSelector,
+], (
+	sets: ISet[],
+	setIconsByUri: Record<URI, ISetIcon>,
+) => sets.map((set: ISet) => {
+	const setIcon: ISetIcon = setIconsByUri[set.icon_svg_uri];
+	set.icon_svg = setIcon && setIcon.svg;
+	return set;
+}));
 
 export const setsSearchResultsCountSelector = createSelector(
 	[setsSearchResultsSelector],
