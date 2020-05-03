@@ -10,6 +10,7 @@ export const globals = {
 };
 
 export const disabled = {
+	cursor: 'not-allowed',
 	opacity: 0.5,
 };
 
