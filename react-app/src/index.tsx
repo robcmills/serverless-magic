@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { App } from 'hexproof/App';
 // import * as serviceWorker from './serviceWorker';
+import 'hexproof/worker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

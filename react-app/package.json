@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "workerize-loader": "^1.1.0"
   }
 }
