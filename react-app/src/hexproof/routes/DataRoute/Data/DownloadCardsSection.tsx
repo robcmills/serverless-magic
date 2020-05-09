@@ -7,7 +7,7 @@ import { IScryFallBulkDataObject } from 'hexproof/types/IScryFallBulkDataObject'
 import { downloadBulkDataObjectsAsyncAction } from 'hexproof/redux/bulkDataObjects/actions';
 
 import {
-  bulkDataObjectsArraySelector,
+  bulkDataObjectsSelector,
   isDownloadingBulkDataSelector,
 } from 'hexproof/redux/bulkDataObjects/selectors';
 
@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
 
 export function DownloadCardsSection() {
   const s = useStyles();
-  const bulkDataObjects: IScryFallBulkDataObject[] = useSelector(bulkDataObjectsArraySelector);
+  const bulkDataObjects: IScryFallBulkDataObject[] = useSelector(bulkDataObjectsSelector);
   const isDownloaded = !!bulkDataObjects.length;
   const isDownloadingBulkData = useSelector(isDownloadingBulkDataSelector);
 
