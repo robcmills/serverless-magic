@@ -1,6 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
+import { DownloadCardsSection } from './DownloadCardsSection';
 import { DownloadSetsSection } from './DownloadSetsSection';
 
 import { SPACING_UNIT } from 'hexproof/styles/constants';
@@ -20,6 +21,7 @@ export function DataBody() {
   return (
     <div className={s.body}>
       <DownloadSetsSection />
+      <DownloadCardsSection />
     </div>
   );
 }

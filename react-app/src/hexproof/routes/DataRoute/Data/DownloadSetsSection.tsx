@@ -14,6 +14,7 @@ import {
 } from 'hexproof/redux/setIcons/selectors';
 
 import { Button } from 'hexproof/components/Button';
+import { H2 } from 'hexproof/components/typography/H2';
 
 export function DownloadSetsSection() {
   const isDownloadingSets = useSelector(isDownloadingSetsSelector);
@@ -55,6 +56,7 @@ export function DownloadSetsSection() {
 
   return (
     <>
+      <H2>Download Sets</H2>
       {setsSection}
       {setsCount > 0 && setIconsSection}
     </>
