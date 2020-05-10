@@ -12,6 +12,7 @@ import {
 } from 'hexproof/redux/bulkDataObjects/selectors';
 
 import { Button } from 'hexproof/components/Button';
+import { DownloadIcon } from 'hexproof/components/icons/DownloadIcon';
 import { H2 } from 'hexproof/components/typography/H2';
 import { P } from 'hexproof/components/typography/P';
 import { Spinner } from 'hexproof/components/Spinner';
@@ -71,7 +72,7 @@ export function DownloadCardsSection() {
 
   const bulkDataSection = (
     <>
-      <H2>Download Bulk Data</H2>
+      <H2>Download Bulk Data <DownloadIcon /></H2>
       {bulkDataButtons}
     </>
   );
