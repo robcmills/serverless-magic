@@ -2,6 +2,7 @@ import { GRAY } from 'hexproof/styles/colors';
 
 export const BORDER = `1px solid ${GRAY}`;
 export const ICON_SIZE = 20;
+export const MEDIUM_BODY_WIDTH = 600;
 export const MENU_BORDER_WIDTH = 1;
 export const MENU_WIDTH = 300;
 export const SET_ICON_SIZE = 28;

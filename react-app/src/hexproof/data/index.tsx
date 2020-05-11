@@ -1,6 +1,7 @@
 // types
 import { ISet } from 'hexproof/types/ISet';
 import { ISetIcon } from 'hexproof/types/ISetIcon';
+import { IScryFallBulkDataObject } from 'hexproof/types/IScryFallBulkDataObject';
 import { URI } from 'hexproof/types/URI';
 
 // util
@@ -19,11 +20,16 @@ import { hydrateSetsAction } from 'hexproof/redux/sets/actions';
 
 
 interface IData {
+  downloadBulkDataObjects: () => Promise<IScryFallBulkDataObject[]>;
   downloadSets: () => Promise<ISet[]>;
   downloadSetIcons: () => Promise<void>;
   getSetIcon: (iconSvgUri: string) => Promise<string>;
   replicateSets: () => Promise<void>;
   replicateSetIcons: () => Promise<void>;
+};
+
+const downloadBulkDataObjects = async () => {
+  return await scryfallService.downloadBulkDataObjects();
 };
 
 const downloadSets = async () => {
@@ -88,6 +94,7 @@ const replicateSetIcons = async () => {
 };
 
 export const data: IData = {
+  downloadBulkDataObjects,
   downloadSets,
   downloadSetIcons,
   getSetIcon: createdGetSetIcon,
