@@ -12,6 +12,7 @@ import {
 } from 'hexproof/redux/asyncAction';
 
 import {
+  // DOWNLOAD_BULK_DATA_OBJECT,
   DOWNLOAD_BULK_DATA_OBJECTS,
 } from 'hexproof/redux/bulkDataObjects/actionTypes';
 
