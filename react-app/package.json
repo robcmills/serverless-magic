@@ -27,10 +27,12 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "webpack --mode development",
+    "eject": "react-scripts eject",
+    "prod": "webpack --mode production",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +50,12 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8"
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "redux-devtools-extension": "^2.13.8",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^7.0.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }
