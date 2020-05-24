@@ -11,6 +11,8 @@ const blobURL = URL.createObjectURL(blob);
 
 const worker = new Worker(blobURL);
 
+URL.revokeObjectURL(blobURL);
+
 worker.onmessage = function(e) {
   console.log('Message received from Worker: ', e.data);
 };

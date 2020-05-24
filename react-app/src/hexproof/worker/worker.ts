@@ -1,7 +1,12 @@
 /* eslint-disable no-restricted-globals */
-export function worker() {
-  self.onmessage = function(e: any) {
-    console.log('Worker received input: ', e.data);
-    self.postMessage('Response back to main thread');
+
+import { receiver } from './receiver'
+
+const worker = () => {
+  self.onmessage = (e: any) => {
+    receiver(e.data)
+    // self.postMessage('Response back to main thread');
   }
 }
+
+export { worker }
