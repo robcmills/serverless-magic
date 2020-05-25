@@ -1,12 +1,22 @@
 /* eslint-disable no-restricted-globals */
 
-import { receiver } from './receiver'
+// import { receiver } from './receiver'
 
-const worker = () => {
-  self.onmessage = (e: any) => {
-    receiver(e.data)
+// const worker = () => {
+//   self.onmessage = (e: any) => {
+		// console.log('Worker received message', e.data)
+    // receiver(e.data)
     // self.postMessage('Response back to main thread');
-  }
+  // }
+// }
+
+const worker: Worker = self as any
+
+worker.onmessage = (e: any) => {
+	console.log('Worker received message', e.data)
+  // receiver.receive(e.data)
+  self.postMessage('Response back to main thread')
 }
 
-export { worker }
+// export default worker
+export default worker

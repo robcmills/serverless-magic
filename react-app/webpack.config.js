@@ -7,6 +7,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /worker\.ts$/,
+        use: {
+          loader: 'worker-loader',
+          options: { inline: true },
+        },
+      },
+      {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -20,13 +27,13 @@ module.exports = {
     ],
   },
   resolve: {
-  	alias: {
-  		hexproof: path.resolve(__dirname, 'src/hexproof/'),
-  	},
+    alias: {
+      hexproof: path.resolve(__dirname, 'src/hexproof/'),
+    },
     extensions: [ '.tsx', '.ts', '.js' ],
   },
   output: {
-    filename: 'bundle.min.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
