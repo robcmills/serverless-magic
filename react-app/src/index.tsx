@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import 'hexproof/worker';
 import { App } from 'hexproof/App';
 // import * as serviceWorker from './serviceWorker';
 

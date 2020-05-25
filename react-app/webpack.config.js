@@ -12,7 +12,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /worker\.ts$/,
+        test: /worker$/,
         use: {
           loader: 'worker-loader',
           options: { inline: true },

@@ -1,4 +1,4 @@
-import Worker from "worker-loader!./worker.ts";
+import Worker from "worker-loader!./worker";
 
 const worker = new Worker();
 

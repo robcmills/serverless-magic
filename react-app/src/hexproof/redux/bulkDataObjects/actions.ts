@@ -1,5 +1,5 @@
 import { store } from 'hexproof/redux/store'
-// import { worker } from 'hexproof/worker'
+import { worker } from 'hexproof/worker'
 
 // interfaces
 import { IScryFallBulkDataObject } from 'hexproof/types/IScryFallBulkDataObject'
@@ -25,5 +25,5 @@ export const downloadBulkDataObjectWorkerAction = (bulkDataObject: IScryFallBulk
 		payload: bulkDataObject,
 	}
 	store.dispatch(action)
-	// worker.postMessage(action)
+	worker.postMessage(action)
 }
