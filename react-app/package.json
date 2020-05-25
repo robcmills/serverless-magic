@@ -28,9 +28,8 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "dev": "webpack --mode development",
+    "dev": "webpack-dev-server --open",
     "eject": "react-scripts eject",
-    "prod": "webpack --mode production",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
@@ -58,6 +57,7 @@
     "ts-loader": "^7.0.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
     "worker-loader": "^2.0.0"
   }
 }
