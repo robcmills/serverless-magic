@@ -11,7 +11,6 @@ export async function downloadBulkDataObject(bulkDataObject: IScryFallBulkDataOb
 		return
 	}
 
-	const cards: IScryFallCard[] = await scryfallApi.downloadBulkCards(bulkDataObject.download_uri)
-
-	console.log('cards', cards)
+	// const cards: IScryFallCard[] = await scryfallApi.downloadBulkCards(bulkDataObject.download_uri)
+	// console.log('cards', cards)
 }

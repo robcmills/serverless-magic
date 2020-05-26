@@ -12,20 +12,29 @@ import {
 } from 'hexproof/redux/asyncAction';
 
 import {
-  // DOWNLOAD_BULK_DATA_OBJECT,
+  DOWNLOAD_BULK_DATA_OBJECT,
   DOWNLOAD_BULK_DATA_OBJECTS,
 } from 'hexproof/redux/bulkDataObjects/actionTypes';
 
 export interface IBulkDataObjectsState {
 	isDownloadingBulkDataObjects: boolean;
   bulkDataObjectsById: Record<UUID, IScryFallBulkDataObject>;
+  bulkDataObjectsDownloadStatusById: Record<UUID, string>;
 }
 const initialState: IBulkDataObjectsState = {
 	isDownloadingBulkDataObjects: false,
   bulkDataObjectsById: {},
+  bulkDataObjectsDownloadStatusById: {},
 };
 
 const handlers = {
+  [DOWNLOAD_BULK_DATA_OBJECT]: (state: IBulkDataObjectsState, bulkDataObject: IScryFallBulkDataObject): IBulkDataObjectsState => ({
+    ...state,
+    bulkDataObjectsDownloadStatusById: {
+      ...state.bulkDataObjectsDownloadStatusById,
+      [bulkDataObject.id]: 'Downloading...',
+    },
+  }),
   [getAsyncActionType(DOWNLOAD_BULK_DATA_OBJECTS)]: (state: IBulkDataObjectsState): IBulkDataObjectsState => ({
     ...state,
     isDownloadingBulkDataObjects: true,

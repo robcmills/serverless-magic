@@ -26,3 +26,8 @@ export const bulkDataObjectsSelector = createSelector(
   [bulkDataObjectsArraySelector],
   sortBy('compressed_size')
 );
+
+export const bulkDataObjectsDownloadStatusByIdSelector = createSelector(
+  [branchSelector],
+  (state: IBulkDataObjectsState) => state.bulkDataObjectsDownloadStatusById
+);
