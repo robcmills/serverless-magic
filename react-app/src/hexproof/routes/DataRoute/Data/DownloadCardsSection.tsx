@@ -45,8 +45,8 @@ const useStyles = createUseStyles({
 });
 
 const ENABLED_BULK_OBJECTS: string[] = [
-  // 'oracle_cards',
-  'rulings',
+  'oracle_cards',
+  // 'rulings',
 ];
 
 export function DownloadCardsSection() {
