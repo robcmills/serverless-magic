@@ -1,11 +1,15 @@
-import Worker from "worker-loader!./worker";
+import Worker from 'worker-loader!./worker'
 
-const worker = new Worker();
+import { store } from 'hexproof/redux/store'
 
-worker.onmessage = function(e: any) {
-  console.log('Message received from Worker: ', e.data);
-};
+const worker = new Worker()
 
-worker.postMessage("Some input to worker");
+worker.onmessage = (e: any) => {
+  store.dispatch(e.data)
+}
 
-export { worker };
+worker.onerror = (error: any) => {
+  console.error('Worker error', error)
+}
+
+export { worker }

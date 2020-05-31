@@ -5,12 +5,12 @@ export function open(
 	onupgradeneeded: ((this: IDBOpenDBRequest, event: IDBVersionChangeEvent) => any) | null,
 ): Promise<IDBDatabase> {
 	return new Promise((resolve, reject) => {
-		if (!window.indexedDB) {
+		if (!indexedDB) {
 		  console.error("Your browser does not support IndexedDB.");
 		  reject();
 		}
 
-		const request: IDBOpenDBRequest = window.indexedDB.open(name, version);
+		const request: IDBOpenDBRequest = indexedDB.open(name, version);
 
 		request.onupgradeneeded = onupgradeneeded;
 
