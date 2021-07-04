@@ -9,6 +9,7 @@ export interface IScryFallBulkDataObject {
 	type: string; // A computer-readable string for the kind of bulk item.
 	name: string; // A human-readable name for this file.
 	description: string; // A human-readable description for this file.
+	download_uri: URI; // The URL where this file can be downloaded.
 	permalink_uri: URI; // The URL that hosts this bulk file.
 	updated_at: Timestamp; // The time when this file was last updated.
 	compressed_size: number; // The size of this file in integer bytes.

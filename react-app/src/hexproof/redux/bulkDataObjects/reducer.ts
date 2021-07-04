@@ -12,24 +12,66 @@ import {
 } from 'hexproof/redux/asyncAction';
 
 import {
+  DOWNLOAD_BULK_DATA_OBJECT,
+  DOWNLOAD_BULK_DATA_OBJECT_COMPLETE,
+  DOWNLOAD_BULK_DATA_OBJECT_PROGRESS,
   DOWNLOAD_BULK_DATA_OBJECTS,
 } from 'hexproof/redux/bulkDataObjects/actionTypes';
 
 export interface IBulkDataObjectsState {
 	isDownloadingBulkDataObjects: boolean;
   bulkDataObjectsById: Record<UUID, IScryFallBulkDataObject>;
+  bulkDataObjectsDownloadStatusById: Record<UUID, string>;
 }
 const initialState: IBulkDataObjectsState = {
 	isDownloadingBulkDataObjects: false,
   bulkDataObjectsById: {},
+  bulkDataObjectsDownloadStatusById: {},
 };
 
 const handlers = {
-  [getAsyncActionType(DOWNLOAD_BULK_DATA_OBJECTS)]: (state: IBulkDataObjectsState): IBulkDataObjectsState => ({
+  [DOWNLOAD_BULK_DATA_OBJECT]: (
+    state: IBulkDataObjectsState,
+    bulkDataObject: IScryFallBulkDataObject,
+  ): IBulkDataObjectsState => ({
+    ...state,
+    bulkDataObjectsDownloadStatusById: {
+      ...state.bulkDataObjectsDownloadStatusById,
+      [bulkDataObject.id]: 'Downloading...',
+    },
+  }),
+  [DOWNLOAD_BULK_DATA_OBJECT_COMPLETE]: (
+    state: IBulkDataObjectsState,
+    { bulkDataObject, progress }: { bulkDataObject: IScryFallBulkDataObject, progress: number },
+  ): IBulkDataObjectsState => {
+    const bulkDataObjectsDownloadStatusById = {
+      ...state.bulkDataObjectsDownloadStatusById,
+    }
+    delete bulkDataObjectsDownloadStatusById[bulkDataObject.id]
+    return {
+      ...state,
+      bulkDataObjectsDownloadStatusById,
+    }
+  },
+  [DOWNLOAD_BULK_DATA_OBJECT_PROGRESS]: (
+    state: IBulkDataObjectsState,
+    { bulkDataObject, progress }: { bulkDataObject: IScryFallBulkDataObject, progress: number },
+  ): IBulkDataObjectsState => ({
+    ...state,
+    bulkDataObjectsDownloadStatusById: {
+      ...state.bulkDataObjectsDownloadStatusById,
+      [bulkDataObject.id]: `Downloading: ${progress}%`,
+    },
+  }),
+  [getAsyncActionType(DOWNLOAD_BULK_DATA_OBJECTS)]: (
+    state: IBulkDataObjectsState,
+  ): IBulkDataObjectsState => ({
     ...state,
     isDownloadingBulkDataObjects: true,
   }),
-  [getErrorActionType(DOWNLOAD_BULK_DATA_OBJECTS)]: (state: IBulkDataObjectsState): IBulkDataObjectsState => ({
+  [getErrorActionType(DOWNLOAD_BULK_DATA_OBJECTS)]: (
+    state: IBulkDataObjectsState,
+  ): IBulkDataObjectsState => ({
     ...state,
     isDownloadingBulkDataObjects: false,
   }),

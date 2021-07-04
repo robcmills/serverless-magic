@@ -1,10 +1,5 @@
-export type ScryFallObjectType =
-	| 'error'
-	| 'list'
-	| 'set'
-	| 'card'
-	| 'related_card';
+import { TScryFallObjectType } from 'hexproof/types/TScryFallObjectType';
 
 export interface IScryFallObject {
-	object: ScryFallObjectType;
+	object: TScryFallObjectType;
 }

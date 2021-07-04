@@ -1,0 +1,1 @@
+export type TScryFallGame = 'paper' | 'arena' | 'mtgo'

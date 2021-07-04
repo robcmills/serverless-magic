@@ -7,6 +7,13 @@ export function onUpgradeNeeded(
   }
   const indexedDB: IDBDatabase = this.result;
 
+  if (!indexedDB.objectStoreNames.contains('cards')) {
+    const objectStore: IDBObjectStore = indexedDB.createObjectStore(
+      'cards',
+      { keyPath: 'id' },
+    );
+  }
+
   if (!indexedDB.objectStoreNames.contains('sets')) {
     const objectStore: IDBObjectStore = indexedDB.createObjectStore(
       'sets',

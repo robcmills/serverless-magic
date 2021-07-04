@@ -28,7 +28,7 @@ export const useStyles = createUseStyles({
 	},
 });
 
-const VERSION = 'v0.61.0';
+const VERSION = 'v0.62.0';
 
 export function Splash() {
 	const s = useStyles();
